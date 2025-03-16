@@ -1,5 +1,5 @@
 import random
-# Preguntas para el juego
+ # Preguntas para el juego
 questions = [
 "¿Qué función se usa para obtener la longitud de una
 cadena en Python?",
