@@ -23,14 +23,18 @@ answers = [
 # Índice de la respuesta correcta para cada pregunta, el mismo orden que las preguntas
 correct_answers_index = [1, 2, 0, 3, 1]
 
-# El usuario deberá contestar 3 preguntas
-for _ in range(3):
-    # Se selecciona una pregunta aleatoria
-    question_index = random.randint(0, len(questions) - 1)
 
-    # Se muestra la pregunta y las respuestas posibles
-    print(questions[question_index])
-    for i, answer in enumerate(answers[question_index]):
+# El usuario deberá contestar 3 preguntas
+
+
+questions_to_ask = random.choices(
+    list(zip(questions, answers, correct_answers_index)), k=3)
+
+# Se muestra la pregunta y las respuestas posibles
+for que, opt, ans in questions_to_ask:
+    print(que)
+
+    for i, answer in enumerate(opt):
         print(f"{i + 1}. {answer}")
 
     # El usuario tiene 2 intentos para responder correctamente
@@ -42,18 +46,17 @@ for _ in range(3):
         user_answer = int(user_answer) - 1
 
         # Se verifica si la respuesta es correcta
-        if user_answer == correct_answers_index[question_index]:
-            puntaje+=1
+        if user_answer == ans:
+            puntaje += 1
             print("¡Correcto!")
             break
         else:
             # Si el usuario no responde correctamente después de 2 intentos,
             # se muestra la respuesta correcta
-            if puntaje >0: puntaje-=0.5
+            if puntaje > 0:
+                puntaje -= 0.5
             print("Incorrecto. La respuesta correcta es:")
-            print(answers[question_index]
-                  [correct_answers_index[question_index]])
-
+            print(opt[ans])
     # Se imprime un blanco al final de la pregunta
     print()
 print("el puntaje fue de: ", puntaje)
