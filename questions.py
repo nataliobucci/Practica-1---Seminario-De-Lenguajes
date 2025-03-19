@@ -27,7 +27,7 @@ correct_answers_index = [1, 2, 0, 3, 1]
 # El usuario deberá contestar 3 preguntas
 
 
-questions_to_ask = random.choices(
+questions_to_ask = random.sample(
     list(zip(questions, answers, correct_answers_index)), k=3)
 
 # Se muestra la pregunta y las respuestas posibles
